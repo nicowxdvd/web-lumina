@@ -5,3 +5,7 @@
   --color-lumina-surface: #1A1825;
   --color-lumina-accent: #7C5CFC;
 }
+
+body {
+  background-color: var(--color-lumina-bg);
+}
