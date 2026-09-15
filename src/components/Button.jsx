@@ -1,10 +1,10 @@
-funcion Button({children, onClick}){
+function Button({children, onClick}){
     return(
-        <Button
+        <button
             onClick={onClick}
-            className='"bg-purple-600 hover:bg-purple-700 text-white font-medium rounded-lg px-6 py-3'>
+            className='bg-purple-600 hover:bg-purple-700 text-white font-medium rounded-lg px-6 py-3'>
             {children}
-        </Button>
+        </button>
     )
 
 }
