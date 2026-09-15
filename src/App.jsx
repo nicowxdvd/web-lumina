@@ -1,10 +1,7 @@
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+
 
 function App() {
-  return <div>Lumina</div>
+  return <div className="text-3xl font-bold text-purple-600">Lumina</div>
 }
 
 
