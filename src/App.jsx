@@ -17,6 +17,8 @@ function App() {
       <Input label="Name" value={name} onChange={(e)=> setName(e.target.value)} />
       <Password label="Password" value={password} onChange={(e)=> setPassword(e.target.value)} />
       <Checkbox label="I accept the terms" checked={accepted} onChange={(e) => setAccepted(e.target.checked)} />
+      <Button variant="secondary" onClick={() => alert('Google')}>Continue with Google</Button>
+      <Button variant="secondary" onClick={() => alert('Apple')}>Continue with Apple</Button>
       <Button onClick={()=> alert('Click')}>Create Account</Button>
     </div>
   )
