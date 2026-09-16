@@ -1,4 +1,12 @@
-function Checkbox({ label, checked, onChange }) {
+import type { ChangeEvent, ReactNode } from 'react'
+
+interface CheckboxProps {
+  label: ReactNode
+  checked: boolean
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void
+}
+
+export default function Checkbox({ label, checked, onChange }: CheckboxProps) {
   return (
     <label className="flex items-center gap-2 text-sm text-gray-300">
       <input
@@ -11,5 +19,3 @@ function Checkbox({ label, checked, onChange }) {
     </label>
   )
 }
-
-export default Checkbox
