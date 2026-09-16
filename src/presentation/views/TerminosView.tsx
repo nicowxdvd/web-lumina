@@ -1,10 +1,10 @@
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 
-function Terminos() {
+export function TerminosView() {
   return (
     <div className="min-h-screen bg-lumina-bg text-white px-6 py-12">
       <div className="max-w-2xl mx-auto flex flex-col gap-6">
-        <Link to="/" className="text-lumina-accent text-sm hover:underline w-fit">
+        <Link href="/" className="text-lumina-accent text-sm hover:underline w-fit">
           ← Volver
         </Link>
 
@@ -40,5 +40,3 @@ function Terminos() {
     </div>
   )
 }
-
-export default Terminos
