@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import Input from '../components/Input'
 import Password from '../components/Password'
 import Checkbox from '../components/Checkbox'
@@ -51,7 +52,11 @@ function Login(){
       <h1 className="text-3xl font-bold text-lumina-accent mb-4">¡Bienvenido!</h1>
       <Input label="Correo electrónico" type="email" value={email} error={errors.email} onChange={(e) => setEmail(e.target.value)} />
       <Password label="Contraseña" value={password} error={errors.password} onChange={(e) => setPassword(e.target.value)} />
-      <Checkbox label="Acepto los términos" checked={accepted} onChange={(e) => setAccepted(e.target.checked)} />
+      <Checkbox
+        label={<>Acepto los <Link to="/terminos" className="underline hover:text-lumina-accent">términos y condiciones</Link></>}
+        checked={accepted}
+        onChange={(e) => setAccepted(e.target.checked)}
+      />
       <Button onClick={handleSubmit}>Ingresar</Button>
 
       <p className="text-center text-gray-400 text-sm">O continuá con</p>
