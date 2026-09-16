@@ -17,7 +17,7 @@ function Password({ label, value, onChange, error}){
                 onClick={() => setShowPassword(!showPassword)}
                 className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-gray-400"
             >
-                {showPassword ? 'Hide' : 'Show'}
+                {showPassword ? 'Ocultar' : 'Mostrar'}
             </button>
         </div>
         </div>

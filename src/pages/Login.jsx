@@ -19,7 +19,7 @@ function validate({email, password}){
   }
 
   if(!password){
-    errors.password = 'La constraseña es obligatoria';
+    errors.password = 'La contraseña es obligatoria';
 
   }else if(password.length < 6){
     errors.password = 'La contraseña debe tener al menos 6 caracteres'
@@ -41,23 +41,23 @@ function Login(){
       setErrors(validationErrors);
 
       if(Object.keys(validationErrors).length === 0){
-        alert('Submit')
+        alert('Enviado')
       }
 
     }
 
     return (
     <div className="flex flex-col gap-4 w-full max-w-sm mx-auto min-h-screen justify-center">
-      <h1 className="text-3xl font-bold text-lumina-accent mb-4">Bienvenido!</h1>
-      <Input label="Email" type="email" value={email} error={errors.email} onChange={(e) => setEmail(e.target.value)} />
-      <Password label="Password" value={password} error={errors.password} onChange={(e) => setPassword(e.target.value)} />
-      <Checkbox label="I accept the terms" checked={accepted} onChange={(e) => setAccepted(e.target.checked)} />
+      <h1 className="text-3xl font-bold text-lumina-accent mb-4">¡Bienvenido!</h1>
+      <Input label="Correo electrónico" type="email" value={email} error={errors.email} onChange={(e) => setEmail(e.target.value)} />
+      <Password label="Contraseña" value={password} error={errors.password} onChange={(e) => setPassword(e.target.value)} />
+      <Checkbox label="Acepto los términos" checked={accepted} onChange={(e) => setAccepted(e.target.checked)} />
       <Button onClick={handleSubmit}>Ingresar</Button>
 
-      <p className="text-center text-gray-400 text-sm">Or register with</p>
+      <p className="text-center text-gray-400 text-sm">O continuá con</p>
 
-      <Button variant="secondary" onClick={() => alert('Google')}>Continue with Google</Button>
-      <Button variant="secondary" onClick={() => alert('Apple')}>Continue with Apple</Button>
+      <Button variant="secondary" onClick={() => alert('Continuar con Google')}>Continuar con Google</Button>
+      <Button variant="secondary" onClick={() => alert('Continuar con Apple')}>Continuar con Apple</Button>
     </div>
   )
 
