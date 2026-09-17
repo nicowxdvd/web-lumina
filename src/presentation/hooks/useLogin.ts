@@ -3,9 +3,9 @@
 import { useState } from 'react'
 import type { ValidationErrors } from '@/domain/auth/validateCredentials'
 import { createLoginUseCase } from '@/application/auth/loginUseCase'
-import { mockAuthService } from '@/infrastructure/auth/mockAuthService'
+import { apiAuthService } from '@/infrastructure/auth/apiAuthService'
 
-const login = createLoginUseCase(mockAuthService)
+const login = createLoginUseCase(apiAuthService)
 
 export function useLogin() {
   const [email, setEmail] = useState('')
