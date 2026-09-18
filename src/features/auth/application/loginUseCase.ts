@@ -1,7 +1,7 @@
-import type { Credentials } from '@/domain/auth/credentials'
-import type { ValidationErrors } from '@/domain/auth/validateCredentials'
-import { validateCredentials } from '@/domain/auth/validateCredentials'
-import type { AuthService } from '@/domain/auth/authService.port'
+import type { Credentials } from '@/features/auth/domain/credentials'
+import type { ValidationErrors } from '@/features/auth/domain/validateCredentials'
+import { validateCredentials } from '@/features/auth/domain/validateCredentials'
+import type { AuthService } from '@/features/auth/domain/authService.port'
 
 export interface LoginUseCaseResult {
   errors: ValidationErrors
