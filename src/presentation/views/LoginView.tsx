@@ -9,7 +9,7 @@ import Button from '@/presentation/components/Button'
 import { useLogin } from '@/presentation/hooks/useLogin'
 
 export function LoginView() {
-  const { email, setEmail, password, setPassword, errors, isSubmitting, handleSubmit } = useLogin()
+  const { email, setEmail, password, setPassword, errors, isSubmitting, handleSubmit, formError } = useLogin()
   const [accepted, setAccepted] = useState(false)
 
   return (
@@ -40,6 +40,7 @@ export function LoginView() {
         checked={accepted}
         onChange={(e) => setAccepted(e.target.checked)}
       />
+      {formError && <p className="text-red-500 text-sm text-center">{formError}</p>}
       <Button onClick={handleSubmit} disabled={isSubmitting}>
         {isSubmitting ? 'Ingresando…' : 'Ingresar'}
       </Button>

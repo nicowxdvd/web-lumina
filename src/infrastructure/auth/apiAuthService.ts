@@ -9,6 +9,7 @@ export const  apiAuthService: AuthService ={
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(credentials), 
         })
-        return {success: response.ok}
+        const body = await response.json()
+        return { success: response.ok, message: body.message }
     },
 }

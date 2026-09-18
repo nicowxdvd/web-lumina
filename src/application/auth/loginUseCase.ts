@@ -6,6 +6,7 @@ import type { AuthService } from '@/domain/auth/authService.port'
 export interface LoginUseCaseResult {
   errors: ValidationErrors
   success: boolean
+  message?: string
 }
 
 export function createLoginUseCase(authService: AuthService) {
@@ -17,6 +18,6 @@ export function createLoginUseCase(authService: AuthService) {
     }
 
     const result = await authService.login(credentials)
-    return { errors: {}, success: result.success }
+    return { errors: {}, success: result.success, message: result.message }
   }
 }
