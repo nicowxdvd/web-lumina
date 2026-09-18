@@ -17,7 +17,11 @@ export async function POST(request:Request){
     }
 
     if (!backendResponse.ok) {
-        return NextResponse.json({ success: false }, { status: backendResponse.status })
+        const errorBody = await backendResponse.json().catch(() => null)
+        return NextResponse.json(
+            { success: false, message: errorBody?.message ?? 'No pudimos iniciar sesión.' },
+            { status: backendResponse.status }
+        )
     }
 
     const { access_token } = await backendResponse.json()
