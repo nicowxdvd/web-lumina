@@ -23,7 +23,6 @@ export default function Password({ label, value, onChange, error }: PasswordProp
           onChange={onChange}
           className={`bg-[#1A1825] border ${error ? 'border-red-500' : 'border-gray-700'} rounded-lg px-4 py-2 pr-16 text-white outline-none focus:border-purple-600 w-full`}
         />
-        {error && <p className="text-red-500 text-sm">{error}</p>}
         <button
           type="button"
           onClick={() => setShowPassword(!showPassword)}
@@ -32,6 +31,7 @@ export default function Password({ label, value, onChange, error }: PasswordProp
           {showPassword ? 'Ocultar' : 'Mostrar'}
         </button>
       </div>
+      {error && <p className="text-red-500 text-sm">{error}</p>}
     </div>
   )
 }
