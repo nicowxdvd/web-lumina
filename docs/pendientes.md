@@ -16,7 +16,7 @@ Completado y probado de punta a punta contra el backend NestJS real (los 4 casos
 ### Pantallas nuevas
 4. **Pantalla de error genérica.** Recibe y muestra los mensajes que manda la API (ver criterio acordado: si el backend responde con `message`, se muestra tal cual; si no hay respuesta útil —backend caído, timeout, 500 sin body—, mensaje genérico propio del front, nunca detalles técnicos).
 5. **Pantalla de perfil.** Cambiar imagen de avatar, correo y contraseña. Va a necesitar: casos de uso nuevos en `application/`, un puerto (`profileService` o similar) en `domain/`, y su adaptador real en `infrastructure/`, siguiendo el mismo patrón que `auth`.
-6. **Registro.** Mismo patrón que Login (`app/registro/page.tsx` + vista + use case + adaptador).
+6. **Registro.** Mismo patrón que Login (`app/registro/page.tsx` + vista + use case + adaptador). Incluye mover el checkbox "Acepto los términos y condiciones" desde `LoginView` a esta pantalla (ver punto 15).
 7. **Recuperar contraseña.**
 
 ### Validación y errores
