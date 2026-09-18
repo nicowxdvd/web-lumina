@@ -2,11 +2,11 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import Input from '@/presentation/components/Input'
-import Password from '@/presentation/components/Password'
-import Checkbox from '@/presentation/components/Checkbox'
-import Button from '@/presentation/components/Button'
-import { useLogin } from '@/presentation/hooks/useLogin'
+import Input from '@/shared/ui/Input'
+import Password from '@/shared/ui/Password'
+import Checkbox from '@/shared/ui/Checkbox'
+import Button from '@/shared/ui/Button'
+import { useLogin } from '@/features/auth/presentation/hooks/useLogin'
 
 export function LoginView() {
   const { email, setEmail, password, setPassword, errors, isSubmitting, handleSubmit, formError } = useLogin()

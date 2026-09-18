@@ -1,9 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import type { ValidationErrors } from '@/domain/auth/validateCredentials'
-import { createLoginUseCase } from '@/application/auth/loginUseCase'
-import { apiAuthService } from '@/infrastructure/auth/apiAuthService'
+import type { ValidationErrors } from '@/features/auth/domain/validateCredentials'
+import { createLoginUseCase } from '@/features/auth/application/loginUseCase'
+import { apiAuthService } from '@/features/auth/infrastructure/apiAuthService'
 
 const login = createLoginUseCase(apiAuthService)
 

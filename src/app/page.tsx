@@ -1,5 +1,5 @@
-import AuthLayout from '@/presentation/components/AuthLayout'
-import { LoginView } from '@/presentation/views/LoginView'
+import AuthLayout from '@/features/auth/presentation/AuthLayout'
+import { LoginView } from '@/features/auth/presentation/views/LoginView'
 
 export default function HomePage() {
   return (
