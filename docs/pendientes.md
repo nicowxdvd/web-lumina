@@ -2,9 +2,9 @@
 
 Lista viva de trabajo pendiente. Actualizar acá en vez de dejarlo solo en la conversación.
 
-## En curso (rama `bugfix/feedback-login`)
+## En curso (rama `feature/vertical-slicing`)
 
-Completado y probado de punta a punta contra el backend NestJS real (los 4 casos: credenciales válidas, inválidas, backend caído, doble click). Falta abrir el PR a `develop`.
+Reorganización del front a vertical slicing: `src/domain|application|infrastructure|presentation/auth/*` migrado a `src/features/auth/{domain,application,infrastructure,presentation}/`, y los componentes/vistas transversales movidos a `src/shared/{ui,views}/`. Imports actualizados, `tsc --noEmit` y `npm run lint` sin errores, probado contra el backend real. PR #14 abierto a `develop`, pendiente de revisión.
 
 ## Backlog
 
@@ -15,8 +15,8 @@ Completado y probado de punta a punta contra el backend NestJS real (los 4 casos
 
 ### Pantallas nuevas
 4. **Pantalla de error genérica.** Recibe y muestra los mensajes que manda la API (ver criterio acordado: si el backend responde con `message`, se muestra tal cual; si no hay respuesta útil —backend caído, timeout, 500 sin body—, mensaje genérico propio del front, nunca detalles técnicos).
-5. **Pantalla de perfil.** Cambiar imagen de avatar, correo y contraseña. Va a necesitar: casos de uso nuevos en `application/`, un puerto (`profileService` o similar) en `domain/`, y su adaptador real en `infrastructure/`, siguiendo el mismo patrón que `auth`.
-6. **Registro.** Mismo patrón que Login (`app/registro/page.tsx` + vista + use case + adaptador).
+5. **Pantalla de perfil.** Cambiar imagen de avatar, correo y contraseña. Va a necesitar un slice `features/user/` completo (puerto `profileService` o similar en `domain/`, caso de uso en `application/`, adaptador real en `infrastructure/`), siguiendo el mismo patrón que `features/auth/`. Nace junto con el ABM de usuarios (listar/eliminar/actualizar), que también vive en este slice.
+6. **Registro.** Mismo patrón que Login, pero dentro de `features/auth/` (pega contra `POST /auth/register`, es alta pública, no ABM): `app/registro/page.tsx` + vista + use case + adaptador. Incluye mover el checkbox "Acepto los términos y condiciones" desde `LoginView` a esta pantalla (ver punto 15).
 7. **Recuperar contraseña.**
 
 ### Validación y errores
@@ -31,4 +31,6 @@ Completado y probado de punta a punta contra el backend NestJS real (los 4 casos
 14. Enganchar `eslint-config-next` al `eslint.config.js` (está instalado pero no conectado).
 15. Revisar el contenido mezclado de Login/Registro en `LoginView` (checkbox de términos y botones sociales son típicos de alta de cuenta, no de login).
 16. Prolijidad de `apiAuthService.ts` (formato inconsistente con el resto del código: llaves pegadas, falta `type` en algunos imports).
-17. Sacar la lógica de `fetch` a NestJS (llamada, `try/catch`, mapeo de errores) de los Route Handlers (`src/app/api/**/route.ts`) y moverla a adaptadores en `infrastructure/` (ej. `nestAuthGateway.ts`), dejando el `route.ts` como cableado fino entre la convención de rutas de Next.js y la arquitectura hexagonal. Hoy `route.ts` de login concentra esa lógica porque Next.js obliga a que el archivo viva ahí, pero conviene ordenarlo antes de que haya más endpoints consumiendo la API real (registro, recuperar contraseña, perfil, etc.) y se repita el mismo patrón en cada uno.
+17. Sacar la lógica de `fetch` a NestJS (llamada, `try/catch`, mapeo de errores) de los Route Handlers (`src/app/api/**/route.ts`) y moverla a adaptadores en `features/auth/infrastructure/` (ej. `nestAuthGateway.ts`), dejando el `route.ts` como cableado fino entre la convención de rutas de Next.js y la arquitectura hexagonal. Hoy `route.ts` de login concentra esa lógica porque Next.js obliga a que el archivo viva ahí, pero conviene ordenarlo antes de que haya más endpoints consumiendo la API real (registro, recuperar contraseña, perfil, etc.) y se repita el mismo patrón en cada uno.
+18. Sumar `import/no-restricted-paths` (u otra regla de ESLint equivalente) cuando se conecte `eslint-config-next` (punto 14), para que el linter falle si `domain` importa de `infrastructure` o si un slice (`features/auth`, `features/user`) importa archivos internos de otro en vez de pasar por un barrel público o un puerto. Ver `docs/arquitectura.md`.
+19. Eliminar los mocks (`mockAuthService.ts` y los que se sumen en `features/user/infrastructure/` u otros slices) una vez que la funcionalidad correspondiente esté implementada y probada contra la API real, para no arrastrar adaptadores de salida sin uso.

@@ -1,5 +1,5 @@
-import { AuthService, LoginResult } from "@/domain/auth/authService.port";
-import type { Credentials } from '@/domain/auth/credentials'
+import { AuthService, LoginResult } from "@/features/auth/domain/authService.port";
+import type { Credentials } from '@/features/auth/domain/credentials'
 
 export const  apiAuthService: AuthService ={
     async login(credentials: Credentials): Promise<LoginResult>{
