@@ -4,7 +4,7 @@ Lista viva de trabajo pendiente. Actualizar acá en vez de dejarlo solo en la co
 
 ## En curso (rama `feature/vertical-slicing`)
 
-Reorganización del front a vertical slicing: `src/domain|application|infrastructure|presentation/auth/*` migrado a `src/features/auth/{domain,application,infrastructure,presentation}/`, y los componentes/vistas transversales movidos a `src/shared/{ui,views}/`. Imports actualizados, `tsc --noEmit` y `npm run lint` sin errores. Falta probar el login de punta a punta contra el backend real y abrir el PR a `develop`.
+Reorganización del front a vertical slicing: `src/domain|application|infrastructure|presentation/auth/*` migrado a `src/features/auth/{domain,application,infrastructure,presentation}/`, y los componentes/vistas transversales movidos a `src/shared/{ui,views}/`. Imports actualizados, `tsc --noEmit` y `npm run lint` sin errores, probado contra el backend real. PR #14 abierto a `develop`, pendiente de revisión.
 
 ## Backlog
 
@@ -33,3 +33,4 @@ Reorganización del front a vertical slicing: `src/domain|application|infrastruc
 16. Prolijidad de `apiAuthService.ts` (formato inconsistente con el resto del código: llaves pegadas, falta `type` en algunos imports).
 17. Sacar la lógica de `fetch` a NestJS (llamada, `try/catch`, mapeo de errores) de los Route Handlers (`src/app/api/**/route.ts`) y moverla a adaptadores en `features/auth/infrastructure/` (ej. `nestAuthGateway.ts`), dejando el `route.ts` como cableado fino entre la convención de rutas de Next.js y la arquitectura hexagonal. Hoy `route.ts` de login concentra esa lógica porque Next.js obliga a que el archivo viva ahí, pero conviene ordenarlo antes de que haya más endpoints consumiendo la API real (registro, recuperar contraseña, perfil, etc.) y se repita el mismo patrón en cada uno.
 18. Sumar `import/no-restricted-paths` (u otra regla de ESLint equivalente) cuando se conecte `eslint-config-next` (punto 14), para que el linter falle si `domain` importa de `infrastructure` o si un slice (`features/auth`, `features/user`) importa archivos internos de otro en vez de pasar por un barrel público o un puerto. Ver `docs/arquitectura.md`.
+19. Eliminar los mocks (`mockAuthService.ts` y los que se sumen en `features/user/infrastructure/` u otros slices) una vez que la funcionalidad correspondiente esté implementada y probada contra la API real, para no arrastrar adaptadores de salida sin uso.
